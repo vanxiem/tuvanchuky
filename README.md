@@ -1,0 +1,2 @@
+# tuvanchuky
+Giảm chu kỳ
