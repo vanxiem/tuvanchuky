@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "description": "User email" },
+        "displayName": { "type": "string", "description": "User display name" },
+        "photoURL": { "type": "string", "description": "User photo URL" },
+        "role": { "type": "string", "enum": ["user", "admin"], "description": "User role" },
+        "department": { "type": "string", "description": "User department" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Account creation time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "AnalysisHistory": {
+      "title": "Analysis History",
+      "description": "History of AI molding analysis",
+      "type": "object",
+      "properties": {
+        "createdAt": { "type": "string", "format": "date-time" },
+        "userName": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "department": { "type": "string" },
+        "productName": { "type": "string" },
+        "machineCode": { "type": "string" },
+        "inputCycle": { "type": "number" },
+        "suggestedCycle": { "type": "number" },
+        "reducedSeconds": { "type": "number" },
+        "reducedPercent": { "type": "number" },
+        "status": { "type": "string", "enum": ["completed", "error", "processing"] },
+        "aiResultSummary": { "type": "string" },
+        "aiRecommendations": { "type": "array", "items": { "type": "string" } },
+        "machineImageUrl": { "type": "string" },
+        "technicalNote": { "type": "string" },
+        "inputMethod": { "type": "string" },
+        "languageSelected": { "type": "string" },
+        "confirmed": { "type": "boolean" },
+        "confirmedAt": { "type": "string", "format": "date-time" },
+        "source": { "type": "string" },
+        "userId": { "type": "string" }
+      },
+      "required": ["userId", "inputCycle", "suggestedCycle", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/analysis_history/{recordId}": {
+      "schema": "AnalysisHistory",
+      "description": "History of AI analyses"
+    }
+  }
+}
